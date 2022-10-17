@@ -2,7 +2,7 @@
 
 
 echo "开始ping vpn网段"
-netok=$(ping 192.168.0.1 -c3 |grep "time=")
+netok=$(ping 192.168.0.1 -c5 |grep "time=")
 if [ "$netok" ]; then
 
 echo "vpn畅通，任务结束。"
