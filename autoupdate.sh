@@ -2,7 +2,7 @@
 
 # 本脚本需要复制到/etc/config目录下使用，或直接ssh登录openwrt后复制下面的代码,注意，复制时不要带上第一个字符#！！！！！
 
-# cd /etc/config && wget -O autoupdate.sh https://github.com/lylus/OpenWrt-Firmware/raw/main/autoupdate.sh && chmod 700 /etc/config/autoupdate.sh && /etc/config/autoupdate.sh
+# cd /etc/config && wget -O autoupdate.sh https://github.com/lylus/OpenWrt-OTA/raw/main/autoupdate.sh && chmod 700 /etc/config/autoupdate.sh && /etc/config/autoupdate.sh
 
 # 在openwrt的luci界面的计划任务里面添加如下命令，可实时自动更新，例如下面的命令为 每两天的凌晨5点执行更新。
 
@@ -11,7 +11,7 @@
 # 获取固件最新版本号
 	cd /etc/config
 
-	api_url="https://api.github.com/repos/lylus/OpenWrt-Firmware/releases/latest"
+	api_url="https://api.github.com/repos/lylus/OpenWrt-OTA/releases/latest"
 
 	new_ver=`curl ${PROXY} -s ${api_url} --connect-timeout 10| grep 'tag_name' | cut -d\" -f4`
 
@@ -23,8 +23,8 @@ EOF
 	sed -i 's/v//g' ./version.txt
 	get_releases=$(cat ./version.txt)
 
-	releases_url=https://github.com/lylus/OpenWrt-Firmware/releases/download/${new_ver}/immortalwrt-x86-64-generic-squashfs-combined-efi.img.gz
-	sha256sums_url=https://github.com/lylus/OpenWrt-Firmware/releases/download/${new_ver}/sha256sums
+	releases_url=https://github.com/lylus/OpenWrt-OTA/releases/download/${new_ver}/openwrt-x86-64-generic-squashfs-combined-efi.img.gz
+	sha256sums_url=https://github.com/lylus/OpenWrt-OTA/releases/download/${new_ver}/sha256sums
 
 
 #	rm -rf ./version.txt
@@ -58,14 +58,14 @@ else
 	
 	echo "正在下载固件，请耐心等待。"
 	
-	wget -O immortalwrt-x86-64-generic-squashfs-combined-efi.img.gz ${releases_url}
+	wget -O openwrt-x86-64-generic-squashfs-combined-efi.img.gz ${releases_url}
 
 
-	chmod 755 immortalwrt-x86-64-generic-squashfs-combined-efi.img.gz
+	chmod 755 openwrt-x86-64-generic-squashfs-combined-efi.img.gz
 
 	sha256=$(sha256sum -c sha256sums 2> /dev/null | grep OK)
 	
-if [ "$sha256" = "immortalwrt-x86-64-generic-squashfs-combined-efi.img.gz: OK" ]
+if [ "$sha256" = "openwrt-x86-64-generic-squashfs-combined-efi.img.gz: OK" ]
 
 then
 	cd /etc/config
@@ -78,7 +78,7 @@ then
 
 	sleep 5
 
-	sysupgrade /tmp/immortalwrt-x86-64-generic-squashfs-combined-efi.img.gz
+	sysupgrade /tmp/openwrt-x86-64-generic-squashfs-combined-efi.img.gz
 
 	echo "新版本，已更新完成!"
 
