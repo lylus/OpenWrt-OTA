@@ -2,7 +2,7 @@
 
 # 本脚本需要复制到/etc/config目录下使用，或直接ssh登录openwrt后复制下面的代码,注意，复制时不要带上第一个字符#！！！！！
 
-# cd /etc/config && wget -O autoupdate.sh https://github.com/lylus/OpenWrt-OTA/raw/main/autoupdate.sh && chmod 700 /etc/config/autoupdate.sh && /etc/config/autoupdate.sh
+# cd /etc/config && wget -O autoupdate.sh https://github.com/lylus/OpenWrt-OTA/raw/main/autoupdate.sh && chmod 755 /etc/config/autoupdate.sh && /etc/config/autoupdate.sh
 
 # 在openwrt的luci界面的计划任务里面添加如下命令，可实时自动更新，例如下面的命令为 每两天的凌晨5点执行更新。
 
