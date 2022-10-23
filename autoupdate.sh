@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# 注意！注意！注意！注意！注意！此脚本仅兼容EFI启动的固件，非EFI固件执行会导致无法启动。
+
 # 本脚本需要复制到/etc/config目录下使用，或直接ssh登录openwrt后复制下面的代码,注意，复制时不要带上第一个字符#！！！！！
 
 # cd /etc/config && wget -O autoupdate.sh https://github.com/lylus/OpenWrt-OTA/raw/main/autoupdate.sh && chmod 755 /etc/config/autoupdate.sh && /etc/config/autoupdate.sh
